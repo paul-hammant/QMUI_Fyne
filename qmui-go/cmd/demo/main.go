@@ -27,7 +27,10 @@ import (
 	"github.com/user/qmui-go/pkg/components/marquee"
 	"github.com/user/qmui-go/pkg/components/popup"
 	"github.com/user/qmui-go/pkg/components/progress"
+	"github.com/user/qmui-go/pkg/components/segmented"
 	"github.com/user/qmui-go/pkg/components/table"
+	"github.com/user/qmui-go/pkg/components/textfield"
+	"github.com/user/qmui-go/pkg/components/textview"
 	"github.com/user/qmui-go/pkg/components/toast"
 	"github.com/user/qmui-go/pkg/console"
 	"github.com/user/qmui-go/pkg/core"
@@ -159,11 +162,13 @@ func createMainUI() fyne.CanvasObject {
 	tabs := container.NewAppTabs(
 		container.NewTabItem("Components", createComponentsTab()),
 		container.NewTabItem("Buttons", createButtonsTab()),
+		container.NewTabItem("Inputs", createInputsTab()),
 		container.NewTabItem("Progress", createProgressTab()),
 		container.NewTabItem("Dialogs", createDialogsTab()),
 		container.NewTabItem("Lab", createLabTab()),
 	)
 	tabs.SetTabLocation(container.TabLocationBottom)
+	tabs.SelectTabIndex(2)
 
 	navBar := createNavBar("QMUI Go Components")
 	bg := canvas.NewRectangle(qmuiBackground)
@@ -459,6 +464,50 @@ func createLiveTable() fyne.CanvasObject {
 }
 
 // ============ Buttons Tab ============
+
+func createInputsTab() fyne.CanvasObject {
+	cards := []fyne.CanvasObject{
+		createLiveComponentCard(
+			"textfield.TextField",
+			"Text input field",
+			createLiveTextField(),
+		),
+		createLiveComponentCard(
+			"textview.TextView",
+			"Multiline text view",
+			createLiveTextView(),
+		),
+		createLiveComponentCard(
+			"segmented.SegmentedControl",
+			"Segmented control",
+			createLiveSegmentedControl(),
+		),
+	}
+	return container.NewScroll(container.NewVBox(cards...))
+}
+
+func createLiveTextField() fyne.CanvasObject {
+	tf := textfield.NewTextFieldWithPlaceholder("Placeholder")
+	tf.OnTextChanged = func(s string) {
+		fmt.Println("TextField changed:", s)
+	}
+	return tf
+}
+
+func createLiveTextView() fyne.CanvasObject {
+	tv := textview.NewTextViewWithPlaceholder("Placeholder")
+	tv.OnTextChanged = func(s string) {
+		fmt.Println("TextView changed:", s)
+	}
+	return tv
+}
+
+func createLiveSegmentedControl() fyne.CanvasObject {
+	sc := segmented.NewSegmentedControl([]string{"First", "Second", "Third"}, func(i int) {
+		fmt.Println("SegmentedControl selected:", i)
+	})
+	return sc
+}
 
 func createButtonsTab() fyne.CanvasObject {
 	cards := []fyne.CanvasObject{
