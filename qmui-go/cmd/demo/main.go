@@ -20,9 +20,14 @@ import (
 	"github.com/user/qmui-go/pkg/components/alert"
 	"github.com/user/qmui-go/pkg/components/badge"
 	"github.com/user/qmui-go/pkg/components/button"
+	"github.com/user/qmui-go/pkg/components/checkbox"
+	"github.com/user/qmui-go/pkg/components/dialog"
 	"github.com/user/qmui-go/pkg/components/empty"
 	"github.com/user/qmui-go/pkg/components/floatlayout"
 	"github.com/user/qmui-go/pkg/components/grid"
+	"github.com/user/qmui-go/pkg/components/modal"
+	"github.com/user/qmui-go/pkg/components/qmuiswitch"
+	"github.com/user/qmui-go/pkg/components/tips"
 	"github.com/user/qmui-go/pkg/components/label"
 	"github.com/user/qmui-go/pkg/components/marquee"
 	"github.com/user/qmui-go/pkg/components/popup"
@@ -165,10 +170,12 @@ func createMainUI() fyne.CanvasObject {
 		container.NewTabItem("Inputs", createInputsTab()),
 		container.NewTabItem("Progress", createProgressTab()),
 		container.NewTabItem("Dialogs", createDialogsTab()),
+		container.NewTabItem("Popups & Alerts", createPopupsTab()),
+		container.NewTabItem("Controls", createControlsTab()),
 		container.NewTabItem("Lab", createLabTab()),
 	)
 	tabs.SetTabLocation(container.TabLocationBottom)
-	tabs.SelectTabIndex(2)
+	tabs.SelectTabIndex(6)
 
 	navBar := createNavBar("QMUI Go Components")
 	bg := canvas.NewRectangle(qmuiBackground)
@@ -633,6 +640,100 @@ func createProgressTab() fyne.CanvasObject {
 		createLiveComponentCard("progress.LinearProgressView", "Horizontal bar", lin),
 		createSectionCard("Controls", container.NewHBox(animateBtn, resetBtn)),
 	))
+}
+
+// ============ Popups & Alerts Tab ============
+
+func createPopupsTab() fyne.CanvasObject {
+	dialogBtn := widget.NewButton("Show dialog.DialogViewController", func() {
+		dialog.ShowConfirmDialog(mainWindow, "Confirm", "Are you sure?", nil, nil)
+	})
+
+	modalBtn := widget.NewButton("Show modal.ModalPresentationViewController", func() {
+		content := widget.NewLabel("This is a modal dialog")
+		modal.NewModalPresentationViewControllerWithContent(content).Present(mainWindow)
+	})
+
+	tipsBtn := widget.NewButton("Show tips.Tips", func() {
+		tips.ShowSuccess(mainWindow, "Success")
+	})
+
+	return container.NewScroll(container.NewVBox(
+		createSectionCard("dialog.DialogViewController", dialogBtn),
+		createSectionCard("modal.ModalPresentationViewController", modalBtn),
+		createSectionCard("tips.Tips", tipsBtn),
+	))
+}
+
+// ============ Controls Tab ============
+
+func createControlsTab() fyne.CanvasObject {
+	cards := []fyne.CanvasObject{
+		createLiveComponentCard(
+			"checkbox.Checkbox",
+			"Checkbox component",
+			createLiveCheckbox(),
+		),
+		createLiveComponentCard(
+			"switch.Switch",
+			"Switch component",
+			createLiveSwitch(),
+		),
+	}
+	return container.NewScroll(container.NewVBox(cards...))
+}
+
+func createLiveSwitch() fyne.CanvasObject {
+	s1 := qmuiswitch.NewSwitch(func(b bool) {
+		fmt.Printf("Switch 1 changed: %v\n", b)
+	})
+
+	s2 := qmuiswitch.NewSwitch(func(b bool) {
+		fmt.Printf("Switch 2 changed: %v\n", b)
+	})
+	s2.SetChecked(true)
+
+	s3 := qmuiswitch.NewSwitch(nil)
+	s3.Enabled = false
+
+	s4 := qmuiswitch.NewSwitch(nil)
+	s4.Enabled = false
+	s4.SetChecked(true)
+
+	return container.NewVBox(
+		s1,
+		s2,
+		s3,
+		s4,
+	)
+}
+
+func createLiveCheckbox() fyne.CanvasObject {
+	cb1 := checkbox.NewCheckboxWithLabel("Option 1", func(b bool) {
+		fmt.Printf("Checkbox 1 changed: %v\n", b)
+	})
+	cb2 := checkbox.NewCheckboxWithLabel("Option 2", func(b bool) {
+		fmt.Printf("Checkbox 2 changed: %v\n", b)
+	})
+	cb2.SetSelected(true)
+
+	cb3 := checkbox.NewCheckboxWithLabel("Indeterminate", nil)
+	cb3.SetIndeterminate(true)
+
+	cb4 := checkbox.NewCheckboxWithLabel("Disabled", nil)
+	cb4.Enabled = false
+
+	cb5 := checkbox.NewCheckboxWithLabel("Disabled & Checked", nil)
+	cb5.Enabled = false
+	cb5.SetSelected(true)
+
+	return container.NewVBox(
+		cb1,
+		cb2,
+		cb3,
+		cb4,
+		cb5,
+	)
 }
 
 // ============ Dialogs Tab ============

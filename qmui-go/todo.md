@@ -20,7 +20,9 @@ This document tracks the porting progress of QMUI iOS components to Go with the 
 | `QMUITableView` | `table` | ✅ Verified | Implemented and included in the demo. |
 | `QMUITextField` | `textfield` | ✅ Verified | Implemented and included in the demo. |
 | `QMUITextView` | `textview` | ✅ Verified | Implemented and included in the demo. |
-| `QMUICheckbox` | `checkbox` | 🟡 Implemented, Needs Demo | Code exists, but not shown in the demo. |
+| `QMUICheckbox` | `checkbox` | ✅ Verified | A faithful port. The Go version uses programmatic drawing instead of images, which is an idiomatic improvement for Fyne. |
+| `(Not Applicable)` | `radiobutton` | ❌ Not Implemented | Component does not exist in the original QMUI_iOS. Functionality is likely achieved via other controls like `SegmentedControl`. |
+| `UISwitch+QMUI` | `switch` | ✅ Verified | Implemented as a custom Fyne widget to support `qmui_offTintColor`. An idiomatic port. |
 | `QMUISegmentedControl` | `segmented` | ✅ Verified | Implemented and included in the demo. |
 | `QMUISearchBar` | `search` | 🟡 Implemented, Needs Demo | Code exists, but not shown in the demo. |
 | `QMUIDialogViewController` | `dialog` | 🟡 Implemented, Needs Demo | Code exists, but not shown in the demo. |
