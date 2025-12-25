@@ -316,9 +316,9 @@ package main
 
 import (
     "fyne.io/fyne/v2/app"
-    "github.com/user/qmui-go/pkg/components/tips"
-    "github.com/user/qmui-go/pkg/components/dialog"
-    "github.com/user/qmui-go/pkg/theme"
+    "github.com/paul-hammant/qmui_fyne/tips"
+    "github.com/paul-hammant/qmui_fyne/dialog"
+    "github.com/paul-hammant/qmui_fyne/theme"
 )
 
 func main() {

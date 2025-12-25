@@ -2,6 +2,8 @@
 
 A comprehensive Go+Fyne port of [QMUI iOS](https://github.com/Tencent/QMUI_iOS), providing polished, themeable UI components for desktop applications.
 
+> **Note:** This is an unofficial community port, not affiliated with Tencent. Would y'all want it back were I to grant my portions of the copyright?
+
 ## Features
 
 - **45+ Components** - Buttons, dialogs, progress indicators, navigation, and more
@@ -12,7 +14,7 @@ A comprehensive Go+Fyne port of [QMUI iOS](https://github.com/Tencent/QMUI_iOS),
 ## Installation
 
 ```go
-go get github.com/user/qmui-go
+go get github.com/paul-hammant/qmui_fyne
 ```
 
 ## Running the Demo
@@ -43,9 +45,9 @@ package main
 
 import (
     "fyne.io/fyne/v2/app"
-    "github.com/user/qmui-go/pkg/components/button"
-    "github.com/user/qmui-go/pkg/components/tips"
-    "github.com/user/qmui-go/pkg/theme"
+    "github.com/paul-hammant/qmui_fyne/button"
+    "github.com/paul-hammant/qmui_fyne/tips"
+    "github.com/paul-hammant/qmui_fyne/theme"
 )
 
 func main() {
@@ -182,41 +184,40 @@ tm.AddThemeChangeListener(func(t *theme.Theme) {
 ## Package Structure
 
 ```
-qmui-go/pkg/
+qmui_fyne/
 ├── core/           # Configuration, helpers
 ├── theme/          # Hot-switchable themes
 ├── animation/      # Easing functions
-└── components/
-    ├── alert/      # Alert, Action
-    ├── album/      # AlbumView
-    ├── badge/      # Badge
-    ├── button/     # Button, FillButton, GhostButton, etc.
-    ├── checkbox/   # Checkbox
-    ├── collection/ # PagingLayout
-    ├── dialog/     # Dialog, DialogAction
-    ├── emotion/    # EmojiPicker
-    ├── empty/      # EmptyState
-    ├── floatlayout/# FlowLayout, TagCloud, Tag
-    ├── grid/       # Grid, GridItem
-    ├── imagepicker/# ImagePicker
-    ├── imagepreview/# ImagePreview
-    ├── label/      # Label
-    ├── layouter/   # Layouter
-    ├── marquee/    # Marquee
-    ├── modal/      # Modal
-    ├── moreop/     # ActionSheet, Item
-    ├── navigation/ # NavigationBar, TitleView, TabBar
-    ├── popup/      # PopupMenu, PopupContainer
-    ├── progress/   # PieProgress, RingProgress, ProgressBar
-    ├── search/     # SearchBar
-    ├── segmented/  # SegmentedControl
-    ├── table/      # Table, TableCell, TableSection
-    ├── textfield/  # TextField
-    ├── textview/   # TextView
-    ├── tile/       # Tile
-    ├── tips/       # HUD
-    ├── toast/      # Toast
-    └── zoomimage/  # ZoomImage
+├── alert/          # Alert, Action
+├── album/          # AlbumView
+├── badge/          # Badge
+├── button/         # Button, FillButton, GhostButton, etc.
+├── checkbox/       # Checkbox
+├── collection/     # PagingLayout
+├── dialog/         # Dialog, DialogAction
+├── emotion/        # EmojiPicker
+├── empty/          # EmptyState
+├── floatlayout/    # FlowLayout, TagCloud, Tag
+├── grid/           # Grid, GridItem
+├── imagepicker/    # ImagePicker
+├── imagepreview/   # ImagePreview
+├── label/          # Label
+├── layouter/       # Layouter
+├── marquee/        # Marquee
+├── modal/          # Modal
+├── moreop/         # ActionSheet, Item
+├── navigation/     # NavigationBar, TitleView, TabBar
+├── popup/          # PopupMenu, PopupContainer
+├── progress/       # PieProgress, RingProgress, ProgressBar
+├── search/         # SearchBar
+├── segmented/      # SegmentedControl
+├── table/          # Table, TableCell, TableSection
+├── textfield/      # TextField
+├── textview/       # TextView
+├── tile/           # Tile
+├── tips/           # HUD
+├── toast/          # Toast
+└── zoomimage/      # ZoomImage
 ```
 
 ---

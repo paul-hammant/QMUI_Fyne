@@ -1,4 +1,4 @@
-module github.com/user/qmui-go
+module github.com/paul-hammant/qmui_fyne
 
 go 1.21
 
