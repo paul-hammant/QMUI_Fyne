@@ -1,4 +1,4 @@
-See [qmui-go](./qmui-go) folder for the Go+Fyne port
+See [qmui_fyne](./qmui_fyne) folder for the Go+Fyne port
 
 Tencent's readme below:
 

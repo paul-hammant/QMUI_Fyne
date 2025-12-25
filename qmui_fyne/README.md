@@ -22,7 +22,7 @@ go get github.com/paul-hammant/qmui_fyne
 The demo app provides an interactive guided tour of all 45+ components:
 
 ```bash
-cd qmui-go
+cd qmui_fyne
 go run ./cmd/demo
 ```
 
@@ -76,7 +76,7 @@ func main() {
 | Component | Package | Fyne Base | Alternative To | Description |
 |-----------|---------|-----------|----------------|-------------|
 | **Buttons** |
-| `Button` | `button` | `widget.BaseWidget` | `widget.Button` | Customizable button with image positioning, states, insets |
+| `Button` | `button`* | `widget.BaseWidget` | `widget.Button` | Customizable button with image positioning, states, insets |
 | `FillButton` | `button` | `Button` | `widget.Button` + custom bg | Solid filled button with rounded corners |
 | `GhostButton` | `button` | `Button` | `widget.Button` + border | Outlined/bordered button |
 | `NavigationButton` | `button` | `Button` | Plain text button | Navigation bar styled button |
@@ -146,6 +146,8 @@ func main() {
 | `Theme` | `theme` | Theme definition with colors |
 | `Configuration` | `core` | Global UI configuration |
 | `Animation` | `animation` | 25+ easing functions for animations |
+
+\* Package names are relative to `github.com/paul-hammant/qmui_fyne/`. For example, import the button package as `import "github.com/paul-hammant/qmui_fyne/button"`.
 
 ---
 
